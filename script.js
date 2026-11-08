@@ -1,67 +1,13 @@
 /**
  * ÉVASION AZUR — LUXURY TRAVEL SUITE
- * Three.js 3D Globe, Magnetic Reticle Cursor, Fullscreen Lookbook,
- * Multi-Currency & Language Engine, Haptic Mobile Feedback & Takeoff Physics
+ * Three.js 3D Globe, Fullscreen Lookbook, Multi-Currency & Language Engine,
+ * Haptic Mobile Feedback & Takeoff Physics
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ==========================================================================
-       1. CURSEUR AÉRONAUTIQUE SUR-MESURE & EFFET MAGNÉTIQUE
-       ========================================================================== */
-    const aeroCursor = document.getElementById('aeroCursor');
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let cursorX = mouseX;
-    let cursorY = mouseY;
-    let isHoveringTarget = false;
-
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            aeroCursor.style.opacity = '1';
-        });
-
-        document.addEventListener('mouseleave', () => {
-            aeroCursor.style.opacity = '0';
-        });
-
-        // Animation loop avec lerp fluide
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.18;
-            cursorY += (mouseY - cursorY) * 0.18;
-            aeroCursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        // Cibles magnétiques
-        const magneticTargets = document.querySelectorAll('.magnetic-target, .btn-primary, .btn-secondary, .tab-btn, .destination-card, .btn-card-lookbook');
-        magneticTargets.forEach(target => {
-            target.addEventListener('mouseenter', () => {
-                aeroCursor.classList.add('cursor-hover');
-                isHoveringTarget = true;
-            });
-
-            target.addEventListener('mousemove', (e) => {
-                const rect = target.getBoundingClientRect();
-                const targetCenterX = rect.left + rect.width / 2;
-                const targetCenterY = rect.top + rect.height / 2;
-                // Attraction magnétique légère
-                mouseX = targetCenterX + (e.clientX - targetCenterX) * 0.35;
-                mouseY = targetCenterY + (e.clientY - targetCenterY) * 0.35;
-            });
-
-            target.addEventListener('mouseleave', () => {
-                aeroCursor.classList.remove('cursor-hover');
-                isHoveringTarget = false;
-            });
-        });
-    }
-
-    /* ==========================================================================
-       2. CANVAS D'ARRIÈRE-PLAN: PARTICULES CÉLESTES & TRAÎNÉES AMBIANTES
+       1. CANVAS D'ARRIÈRE-PLAN: PARTICULES CÉLESTES & TRAÎNÉES AMBIANTES
        ========================================================================== */
     const bgCanvas = document.getElementById('airplaneFlightCanvas');
     const bgCtx = bgCanvas.getContext('2d');
