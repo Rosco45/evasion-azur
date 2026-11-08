@@ -3,10 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Évasion Azur — L'Art du Voyage & de l'Aviation d'Exception</title>
-    <meta name="description" content="Maison de haute confection de voyages d'exception et d'aviation privée. Sanctuaires confidentiels, lagons turquoise et service de conciergerie sur-mesure.">
+    <title>Évasion Azur — L'Art du Voyage & de l'Aviation d'Exception | Luxury Private Jet & Atolls</title>
+    <meta name="description" content="Maison de haute confection de voyages d'exception et d'aviation privée. Sanctuaires confidentiels, lagons turquoise et conciergerie dédiée 24/7.">
 
-    <!-- Typographie Haute Couture: Plus Jakarta Sans & Syne -->
+    <!-- Schema.org JSON-LD (SEO Ultra-Luxe) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "TravelAgency",
+          "@id": "https://evasionazur.com/#agency",
+          "name": "Évasion Azur",
+          "alternateName": "Évasion Azur Haute Horlogerie du Voyage",
+          "description": "Maison de haute confection de voyages d'exception et d'aviation d'affaires sur-mesure.",
+          "url": "https://evasionazur.com",
+          "telephone": "+33-1-48-00-24-00",
+          "email": "contact@evasionazur.com",
+          "address": [
+            {
+              "@type": "PostalAddress",
+              "streetAddress": "14 Place Vendôme",
+              "addressLocality": "Paris",
+              "postalCode": "75001",
+              "addressCountry": "FR"
+            },
+            {
+              "@type": "PostalAddress",
+              "streetAddress": "Quai Gustave-Ador",
+              "addressLocality": "Genève",
+              "postalCode": "1207",
+              "addressCountry": "CH"
+            }
+          ],
+          "priceRange": "$$$$$",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.98",
+            "reviewCount": "148"
+          }
+        },
+        {
+          "@type": "Product",
+          "name": "Séjour Privé Falcon 8X Bora Bora & Atolls",
+          "description": "Odyssée en jet privé long-courrier direct avec hydravion privatisé et villa sur pilotis.",
+          "offers": {
+            "@type": "Offer",
+            "price": "14800",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Google Fonts: Syne & Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
@@ -14,24 +66,52 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <!-- Three.js CDN pour le Globe 3D Céleste -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+    <!-- Curseur Aéronautique Sur-Mesure (Magnetic Crosshair) -->
+    <div class="aero-cursor" id="aeroCursor" aria-hidden="true">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+        <svg class="cursor-jet" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10 1L12 8L18 10L12 12L10 19L8 12L2 10L8 8L10 1Z"/>
+        </svg>
+    </div>
+
     <!-- Dynamic Canvas for Sky Ambience & Airplane Contrails -->
     <canvas id="airplaneFlightCanvas"></canvas>
 
-    <!-- Canvas dédié pour la traînée dynamique de décollage lors du clic CTA -->
+    <!-- Canvas pour la traînée dynamique de décollage lors du clic CTA -->
     <canvas id="takeoffTrailCanvas"></canvas>
 
-    <!-- Top Minimalist Ticker -->
+    <!-- Top Minimalist Ticker avec Multidevise et Multilingue -->
     <div class="announcement-bar">
         <div class="container announcement-inner">
-            <span class="badge-pill">Privilège 2026</span>
-            <p>Collection Confidentielle : Atolls Secrets de Polynésie & Retraites Privées ouvertes aux membres.</p>
-            <a href="#atelier" class="announcement-link">
-                Accéder à l'Atelier <i class="fa-solid fa-arrow-right-long"></i>
-            </a>
+            <div class="ticker-content">
+                <span class="badge-pill" data-i18n="badge_privilege">Privilège 2026</span>
+                <p data-i18n="ticker_text">Accès exclusif : Collection Confidentielle Atolls & Retraites Privées ouverte aux membres.</p>
+                <a href="#atelier" class="announcement-link">
+                    <span data-i18n="ticker_cta">Accéder à l'Atelier</span> <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+            </div>
+
+            <!-- Sélecteur Multidevise & Multilingue (FR/EN & EUR/USD/CHF) -->
+            <div class="global-switchers">
+                <div class="currency-selector" title="Sélection de devise">
+                    <button class="currency-btn active" data-currency="EUR">EUR €</button>
+                    <button class="currency-btn" data-currency="USD">USD $</button>
+                    <button class="currency-btn" data-currency="CHF">CHF</button>
+                </div>
+                <div class="lang-selector" title="Language selection">
+                    <button class="lang-btn active" data-lang="fr">FR</button>
+                    <span class="lang-sep">|</span>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -59,18 +139,19 @@
                 </div>
                 <div class="logo-text">
                     <span class="title">ÉVASION AZUR</span>
-                    <span class="subtitle">HAUTE HORLOGERIE DU VOYAGE</span>
+                    <span class="subtitle" data-i18n="brand_subtitle">HAUTE HORLOGERIE DU VOYAGE</span>
                 </div>
             </a>
 
             <!-- Navigation Links -->
             <nav class="main-nav" id="mainNav">
                 <ul class="nav-links">
-                    <li><a href="#hero" class="nav-link">Accueil</a></li>
-                    <li><a href="#destinations" class="nav-link">Destinations</a></li>
-                    <li><a href="#experiences" class="nav-link">Expériences</a></li>
-                    <li><a href="#conciergerie" class="nav-link">Conciergerie</a></li>
-                    <li><a href="#atelier" class="nav-link">L'Atelier</a></li>
+                    <li><a href="#hero" class="nav-link" data-i18n="nav_home">Accueil</a></li>
+                    <li><a href="#destinations" class="nav-link" data-i18n="nav_destinations">Destinations</a></li>
+                    <li><a href="#globeSection" class="nav-link" data-i18n="nav_globe">Globe 3D</a></li>
+                    <li><a href="#experiences" class="nav-link" data-i18n="nav_experiences">Expériences</a></li>
+                    <li><a href="#faqSection" class="nav-link" data-i18n="nav_faq">Aviation VIP</a></li>
+                    <li><a href="#atelier" class="nav-link" data-i18n="nav_atelier">L'Atelier</a></li>
                 </ul>
             </nav>
 
@@ -79,8 +160,8 @@
                 <button class="sound-toggle-btn" id="soundToggle" title="Activer l'ambiance sonore feutrée" aria-label="Contrôle son">
                     <i class="fa-solid fa-volume-xmark"></i>
                 </button>
-                <button class="btn-primary btn-takeoff" id="headerCtaBtn" data-flight-target="Bora Bora • Vol Privé">
-                    <span class="btn-text">Décoller</span>
+                <button class="btn-primary btn-takeoff magnetic-target" id="headerCtaBtn" data-flight-target="Bora Bora • Vol Privé">
+                    <span class="btn-text" data-i18n="cta_takeoff">Décoller</span>
                     <span class="btn-icon">
                         <i class="fa-solid fa-plane-up"></i>
                     </span>
@@ -95,60 +176,65 @@
     </header>
 
     <main>
-        <!-- HERO SECTION -->
+        <!-- HERO SECTION AVEC VIDÉO CINÉMATIQUE AU RALENTI -->
         <section class="hero-section" id="hero">
             <div class="container hero-container">
                 <div class="hero-content">
                     <div class="hero-tagline">
                         <span class="pulse-dot"></span>
-                        <span class="tagline-text">Aviation d'Affaires & Sanctuaires Marins</span>
+                        <span class="tagline-text" data-i18n="hero_tagline">Aviation d'Affaires & Sanctuaires Marins</span>
                     </div>
 
-                    <h1 class="hero-title">
+                    <h1 class="hero-title" data-i18n="hero_title">
                         L’art de l’envol où <br>
                         <span class="gradient-text">l’azur céleste</span> rencontre <br>
                         les mers inviolées.
                     </h1>
 
-                    <p class="hero-description">
+                    <p class="hero-description" data-i18n="hero_desc">
                         Maison de haute confection d'odyssées aériennes. Jets privés d'exception, lagons turquoise confidentiels et conciergerie dédiée 24/7 : sublimez votre temps dans une épure totale.
                     </p>
 
                     <div class="hero-actions">
-                        <button class="btn-primary btn-large btn-takeoff" id="heroCtaExplore" data-flight-target="Polynésie & Atolls Privés">
-                            <span class="btn-text">Décoller vers l'Exception</span>
+                        <button class="btn-primary btn-large btn-takeoff magnetic-target" id="heroCtaExplore" data-flight-target="Polynésie & Atolls Privés">
+                            <span class="btn-text" data-i18n="hero_cta_primary">Décoller vers l'Exception</span>
                             <span class="btn-icon plane-rotate">
                                 <i class="fa-solid fa-plane-departure"></i>
                             </span>
                         </button>
                         
-                        <a href="#destinations" class="btn-secondary">
-                            <span>Explorer nos sanctuaires</span>
+                        <a href="#destinations" class="btn-secondary magnetic-target">
+                            <span data-i18n="hero_cta_secondary">Explorer nos sanctuaires</span>
                             <i class="fa-solid fa-arrow-down"></i>
                         </a>
+
+                        <button class="btn-carnet-quick magnetic-target" id="openCarnetBtn">
+                            <i class="fa-solid fa-book-open"></i>
+                            <span data-i18n="hero_btn_carnet">Carnet d'Envol 2026</span>
+                        </button>
                     </div>
 
                     <!-- Metrics de Prestige -->
                     <div class="hero-stats">
                         <div class="stat-item">
                             <span class="stat-number">100%</span>
-                            <span class="stat-label">Confection Sur-Mesure</span>
+                            <span class="stat-label" data-i18n="stat_custom">Confection Sur-Mesure</span>
                         </div>
                         <div class="stat-separator"></div>
                         <div class="stat-item">
                             <span class="stat-number">48+</span>
-                            <span class="stat-label">Îles & Lagons Secrets</span>
+                            <span class="stat-label" data-i18n="stat_atolls">Îles & Lagons Secrets</span>
                         </div>
                         <div class="stat-separator"></div>
                         <div class="stat-item">
                             <span class="stat-number">24/7</span>
-                            <span class="stat-label">Concierge Dédié</span>
+                            <span class="stat-label" data-i18n="stat_concierge">Concierge Dédié</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="hero-visual">
-                    <div class="visual-card-wrapper">
+                    <div class="visual-card-wrapper" id="heroVisualCard">
                         <!-- Floating Minimalist Badges -->
                         <div class="glass-badge badge-top-right">
                             <div class="badge-icon-wrap">
@@ -168,14 +254,20 @@
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                             </div>
-                            <span class="badge-sub">« Une pureté absolue, du ciel au lagon. »</span>
+                            <span class="badge-sub" data-i18n="badge_quote">« Une pureté absolue, du ciel au lagon. »</span>
                         </div>
 
-                        <!-- Image Frame Showcase -->
+                        <!-- Image Frame Showcase avec Vidéo Cinématique d'Ambiance -->
                         <div class="hero-image-frame">
-                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85" 
-                                 alt="Plage de sable blanc et lagon turquoise étincelant" 
-                                 class="hero-main-img">
+                            <video class="hero-cinematic-video" id="heroCinematicVideo" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&fm=webp&q=85">
+                                <source src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Dana_Point_aerial_video_by_Don_Ramey_Logan.webm" type="video/webm">
+                            </video>
+                            <div class="video-overlay-gradient"></div>
+
+                            <!-- Bouton Contrôle Vidéo -->
+                            <button class="video-play-toggle" id="videoPlayToggle" title="Lecture / Pause vidéo">
+                                <i class="fa-solid fa-pause"></i>
+                            </button>
                             
                             <!-- Runway Strip Interactive Element -->
                             <div class="runway-strip">
@@ -183,7 +275,7 @@
                                     <span class="runway-code">RUNWAY 09-AZUR</span>
                                     <div class="runway-dots"></div>
                                 </div>
-                                <div class="runway-plane btn-takeoff" id="heroMiniJet" data-flight-target="Piste Privée VIP" title="Cliquer pour décoller">
+                                <div class="runway-plane btn-takeoff magnetic-target" id="heroMiniJet" data-flight-target="Piste Privée VIP" title="Cliquer pour décoller">
                                     <svg viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
                                     </svg>
@@ -200,7 +292,7 @@
                     <div class="planner-field">
                         <div class="field-icon"><i class="fa-solid fa-location-dot"></i></div>
                         <div class="field-content">
-                            <label for="flightDestinationSelect">Destination Privilège</label>
+                            <label for="flightDestinationSelect" data-i18n="planner_label_dest">Destination Privilège</label>
                             <select id="flightDestinationSelect">
                                 <option value="Bora Bora & Taha'a (Polynésie)">Bora Bora & Taha'a (Polynésie)</option>
                                 <option value="Capri, Amalfi & Ravello (Italie)">Capri, Amalfi & Ravello (Italie)</option>
@@ -217,7 +309,7 @@
                     <div class="planner-field">
                         <div class="field-icon"><i class="fa-regular fa-calendar-days"></i></div>
                         <div class="field-content">
-                            <label for="flightSeasonSelect">Saison Souhaitée</label>
+                            <label for="flightSeasonSelect" data-i18n="planner_label_season">Saison Souhaitée</label>
                             <select id="flightSeasonSelect">
                                 <option value="Printemps / Été 2026">Printemps / Été 2026</option>
                                 <option value="Automne 2026">Automne 2026</option>
@@ -232,7 +324,7 @@
                     <div class="planner-field">
                         <div class="field-icon"><i class="fa-solid fa-plane-up"></i></div>
                         <div class="field-content">
-                            <label for="flightTypeSelect">Aviation & Style</label>
+                            <label for="flightTypeSelect" data-i18n="planner_label_jet">Aviation & Style</label>
                             <select id="flightTypeSelect">
                                 <option value="Jet Privé Long Courrier (Falcon 8X)">Jet Privé Dédié (Falcon 8X)</option>
                                 <option value="Première Classe & Yacht Privé">Première Classe & Yacht Privé</option>
@@ -242,21 +334,126 @@
                     </div>
 
                     <!-- Déclencheur 1 : Bouton Décoller -->
-                    <button class="planner-btn btn-takeoff" id="searchTakeoffBtn" data-flight-target="Itinéraire Haute-Couture">
-                        <span class="btn-text">Décoller</span>
+                    <button class="planner-btn btn-takeoff magnetic-target" id="searchTakeoffBtn" data-flight-target="Itinéraire Haute-Couture">
+                        <span class="btn-text" data-i18n="cta_takeoff">Décoller</span>
                         <span class="plane-icon"><i class="fa-solid fa-plane-departure"></i></span>
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- PRESTIGE DESTINATIONS SECTION -->
+        <!-- SECTION 2: GLOBE 3D CÉLESTE & COMPARATEUR DE VOLS PRIVÉS -->
+        <section class="globe-section" id="globeSection">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-badge" data-i18n="globe_badge">Cartographie & Balistique Aérienne</span>
+                    <h2 class="section-title" data-i18n="globe_title">Le Globe Céleste des Trajectoires Privées</h2>
+                    <p class="section-subtitle" data-i18n="globe_subtitle">
+                        Explorez nos routes d'envol sans escale. Sélectionnez votre salon d'embarquement VIP et visualisez la trajectoire parabolique directe vers votre sanctuaire.
+                    </p>
+                </div>
+
+                <div class="globe-grid">
+                    <!-- Globe 3D Canvas Container -->
+                    <div class="globe-visual-wrap">
+                        <div id="globeCanvasContainer" class="globe-canvas-box"></div>
+                        <div class="globe-instruction">
+                            <i class="fa-solid fa-hand-pointer"></i> <span>Faites pivoter le globe à la souris ou au doigt</span>
+                        </div>
+                    </div>
+
+                    <!-- Sélecteur de Trajectoire & Comparateur Falcon 8X vs Ligne Régulière -->
+                    <div class="globe-panel">
+                        <div class="route-selector-box">
+                            <h3 data-i18n="route_title">Simulateur d'Envol Sans Correspondance</h3>
+
+                            <div class="route-inputs">
+                                <div class="route-field">
+                                    <label><i class="fa-solid fa-plane-departure"></i> Salon de Départ VIP</label>
+                                    <select id="globeDepartureSelect">
+                                        <option value="lebourget">Paris — Le Bourget (LFPB)</option>
+                                        <option value="geneve">Genève — Cointrin VIP (LSGG)</option>
+                                        <option value="nice">Nice — Côte d'Azur Privé (LFMN)</option>
+                                        <option value="dubai">Dubaï — Al Maktoum VIP (OMDW)</option>
+                                    </select>
+                                </div>
+                                <div class="route-field">
+                                    <label><i class="fa-solid fa-location-dot"></i> Sanctuaire d'Arrivée</label>
+                                    <select id="globeArrivalSelect">
+                                        <option value="borabora">Bora Bora — Motu Mute (NTTB)</option>
+                                        <option value="capri">Capri & Naples Private (LIRN)</option>
+                                        <option value="maldives">Maldives — Velana VIP (VRMM)</option>
+                                        <option value="santorin">Santorin — Thira Air (LGSR)</option>
+                                        <option value="kyoto">Osaka & Kansai VIP (RJBB)</option>
+                                        <option value="fjords">Norvège — Ålesund Vigra (ENAL)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Comparateur Falcon 8X vs Vol Commercial -->
+                            <div class="flight-comparator-card">
+                                <div class="comparator-header">
+                                    <span class="comp-badge">Comparateur Haute Efficience</span>
+                                    <strong id="routeTitleDisplay">Paris Le Bourget ➔ Bora Bora</strong>
+                                </div>
+
+                                <div class="comp-bars">
+                                    <div class="comp-row comp-private">
+                                        <div class="comp-label">
+                                            <i class="fa-solid fa-jet-fighter-up"></i>
+                                            <span>Falcon 8X (Direct Évasion Azur)</span>
+                                        </div>
+                                        <div class="comp-data">
+                                            <span class="comp-time" id="privateTimeVal">18h00</span>
+                                            <span class="comp-tag">0 escale • 15 min embarquement</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="comp-row comp-commercial">
+                                        <div class="comp-label">
+                                            <i class="fa-solid fa-plane"></i>
+                                            <span>Compagnie Régulière (Première)</span>
+                                        </div>
+                                        <div class="comp-data">
+                                            <span class="comp-time" id="commercialTimeVal">26h30</span>
+                                            <span class="comp-tag">2 escales • 3h d'attente douane</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="comp-metrics-row">
+                                    <div class="metric-box">
+                                        <span class="m-val" id="metricDistance">15 720 km</span>
+                                        <span class="m-label">Distance Orthodromique</span>
+                                    </div>
+                                    <div class="metric-box">
+                                        <span class="m-val" id="metricAltitude">41 000 ft</span>
+                                        <span class="m-label">Plafond de Croisière</span>
+                                    </div>
+                                    <div class="metric-box">
+                                        <span class="m-val" id="metricTimeSaved">+ 8h30 gagnées</span>
+                                        <span class="m-label">Gain de Temps de Vie</span>
+                                    </div>
+                                </div>
+
+                                <button class="btn-primary btn-takeoff magnetic-target full-width-btn" id="globeBookFlightBtn" data-flight-target="Trajectoire Falcon 8X">
+                                    <span>Verrouiller cet appareil</span>
+                                    <i class="fa-solid fa-lock"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRESTIGE DESTINATIONS SECTION AVEC LOOKBOOK PLEIN ÉCRAN -->
         <section class="destinations-section" id="destinations">
             <div class="container">
                 <div class="section-header text-center">
-                    <span class="section-badge">Sanctuaires & Horizons</span>
-                    <h2 class="section-title">Destinations d'Azur Sélectionnées</h2>
-                    <p class="section-subtitle">
+                    <span class="section-badge" data-i18n="dest_badge">Sanctuaires & Horizons</span>
+                    <h2 class="section-title" data-i18n="dest_title">Destinations d'Azur Sélectionnées</h2>
+                    <p class="section-subtitle" data-i18n="dest_subtitle">
                         Chaque escale est pensée comme une pièce de haute joaillerie : lagons turquoise translucides, 
                         ciels immaculés et retraites confidentielles loin du tumulte.
                     </p>
@@ -264,11 +461,11 @@
 
                 <!-- Destination Filter Chips -->
                 <div class="destination-tabs">
-                    <button class="tab-btn active" data-filter="all">Toutes les Escales</button>
-                    <button class="tab-btn" data-filter="islands">Îles & Lagons</button>
-                    <button class="tab-btn" data-filter="mediterranean">Méditerranée Secrète</button>
-                    <button class="tab-btn" data-filter="nordic">Sanctuaires Nordiques</button>
-                    <button class="tab-btn" data-filter="orient">Sérénité d'Orient</button>
+                    <button class="tab-btn active magnetic-target" data-filter="all">Toutes les Escales</button>
+                    <button class="tab-btn magnetic-target" data-filter="islands">Îles & Lagons</button>
+                    <button class="tab-btn magnetic-target" data-filter="mediterranean">Méditerranée Secrète</button>
+                    <button class="tab-btn magnetic-target" data-filter="nordic">Sanctuaires Nordiques</button>
+                    <button class="tab-btn magnetic-target" data-filter="orient">Sérénité d'Orient</button>
                 </div>
 
                 <!-- Destinations Grid -->
@@ -277,12 +474,16 @@
                     <!-- Destination 1 : Bora Bora -->
                     <div class="destination-card" data-category="islands" data-destination="Bora Bora & Taha'a">
                         <div class="card-media">
-                            <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=900&q=80" alt="Bora Bora lagon émeraude et azur">
+                            <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=900&fm=webp&q=80" alt="Bora Bora lagon émeraude et azur" loading="lazy">
                             <div class="card-tag">Polynésie Française</div>
                             <div class="flight-badge">
                                 <i class="fa-solid fa-plane"></i>
                                 <span>18h • Vol VIP & Hydravion</span>
                             </div>
+
+                            <button class="btn-card-lookbook magnetic-target" data-lookbook="borabora" title="Ouvrir la Galerie Privée">
+                                <i class="fa-solid fa-expand"></i> <span>Lookbook</span>
+                            </button>
                             
                             <!-- Déclencheur 2 : Élévation et inclinaison au survol -->
                             <div class="card-takeoff-track" aria-hidden="true">
@@ -298,15 +499,15 @@
                                 <div class="card-coords">16.5004° S, 151.7415° W</div>
                             </div>
                             <p class="card-desc">
-                                Villas sur pilotis sur un lagon aux mille nuances de turquoise, survol en hélicoptère du Mont Otemanu et dîner sous la voûte céleste.
+                                Villas sur pilotis sur un lagon aux mille nuances de turquoise, survol en hélicoptère du Mont Otemanu et dîner privé sous la voûte céleste.
                             </p>
                             <div class="card-footer">
                                 <div class="card-price">
                                     <span class="price-from">À partir de</span>
-                                    <span class="price-val">14 800 € <small>/ pers.</small></span>
+                                    <span class="price-val" data-base-eur="14800">14 800 € <small>/ pers.</small></span>
                                 </div>
-                                <button class="btn-card-action btn-takeoff" data-flight-target="Bora Bora & Taha'a">
-                                    <span>Décoller</span>
+                                <button class="btn-card-action btn-takeoff magnetic-target" data-flight-target="Bora Bora & Taha'a">
+                                    <span data-i18n="cta_takeoff">Décoller</span>
                                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                 </button>
                             </div>
@@ -316,14 +517,17 @@
                     <!-- Destination 2 : Capri & Amalfi -->
                     <div class="destination-card" data-category="mediterranean" data-destination="Capri & Ravello">
                         <div class="card-media">
-                            <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=900&q=80" alt="Capri et la mer azur d'Italie">
+                            <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=900&fm=webp&q=80" alt="Capri et la mer azur d'Italie" loading="lazy">
                             <div class="card-tag">Italie Exclusive</div>
                             <div class="flight-badge">
                                 <i class="fa-solid fa-plane"></i>
                                 <span>2h15 • Jet Privé + Riva Yacht</span>
                             </div>
 
-                            <!-- Déclencheur 2 : Élévation et inclinaison au survol -->
+                            <button class="btn-card-lookbook magnetic-target" data-lookbook="capri" title="Ouvrir la Galerie Privée">
+                                <i class="fa-solid fa-expand"></i> <span>Lookbook</span>
+                            </button>
+
                             <div class="card-takeoff-track" aria-hidden="true">
                                 <svg class="card-jet-icon" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
@@ -342,10 +546,10 @@
                             <div class="card-footer">
                                 <div class="card-price">
                                     <span class="price-from">À partir de</span>
-                                    <span class="price-val">8 400 € <small>/ pers.</small></span>
+                                    <span class="price-val" data-base-eur="8400">8 400 € <small>/ pers.</small></span>
                                 </div>
-                                <button class="btn-card-action btn-takeoff" data-flight-target="Capri & Ravello">
-                                    <span>Décoller</span>
+                                <button class="btn-card-action btn-takeoff magnetic-target" data-flight-target="Capri & Ravello">
+                                    <span data-i18n="cta_takeoff">Décoller</span>
                                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                 </button>
                             </div>
@@ -355,14 +559,17 @@
                     <!-- Destination 3 : Atoll Noonu & Baa -->
                     <div class="destination-card" data-category="islands" data-destination="Atoll Noonu & Baa">
                         <div class="card-media">
-                            <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=900&q=80" alt="Bungalow Maldives sur l'eau turquoise">
+                            <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=900&fm=webp&q=80" alt="Bungalow Maldives sur l'eau turquoise" loading="lazy">
                             <div class="card-tag">Océan Indien</div>
                             <div class="flight-badge">
                                 <i class="fa-solid fa-plane"></i>
                                 <span>9h30 • Vol Direct & Hydravion</span>
                             </div>
 
-                            <!-- Déclencheur 2 : Élévation et inclinaison au survol -->
+                            <button class="btn-card-lookbook magnetic-target" data-lookbook="maldives" title="Ouvrir la Galerie Privée">
+                                <i class="fa-solid fa-expand"></i> <span>Lookbook</span>
+                            </button>
+
                             <div class="card-takeoff-track" aria-hidden="true">
                                 <svg class="card-jet-icon" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
@@ -381,10 +588,10 @@
                             <div class="card-footer">
                                 <div class="card-price">
                                     <span class="price-from">À partir de</span>
-                                    <span class="price-val">12 600 € <small>/ pers.</small></span>
+                                    <span class="price-val" data-base-eur="12600">12 600 € <small>/ pers.</small></span>
                                 </div>
-                                <button class="btn-card-action btn-takeoff" data-flight-target="Atoll Noonu & Baa">
-                                    <span>Décoller</span>
+                                <button class="btn-card-action btn-takeoff magnetic-target" data-flight-target="Atoll Noonu & Baa">
+                                    <span data-i18n="cta_takeoff">Décoller</span>
                                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                 </button>
                             </div>
@@ -394,14 +601,17 @@
                     <!-- Destination 4 : Santorin & Milos -->
                     <div class="destination-card" data-category="mediterranean" data-destination="Santorin & Milos">
                         <div class="card-media">
-                            <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=900&q=80" alt="Santorin dômes bleus et mer Égée">
+                            <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=900&fm=webp&q=80" alt="Santorin dômes bleus et mer Égée" loading="lazy">
                             <div class="card-tag">Mer Égée</div>
                             <div class="flight-badge">
                                 <i class="fa-solid fa-plane"></i>
                                 <span>3h30 • Aviation d'Affaires</span>
                             </div>
 
-                            <!-- Déclencheur 2 : Élévation et inclinaison au survol -->
+                            <button class="btn-card-lookbook magnetic-target" data-lookbook="santorin" title="Ouvrir la Galerie Privée">
+                                <i class="fa-solid fa-expand"></i> <span>Lookbook</span>
+                            </button>
+
                             <div class="card-takeoff-track" aria-hidden="true">
                                 <svg class="card-jet-icon" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
@@ -420,10 +630,10 @@
                             <div class="card-footer">
                                 <div class="card-price">
                                     <span class="price-from">À partir de</span>
-                                    <span class="price-val">7 900 € <small>/ pers.</small></span>
+                                    <span class="price-val" data-base-eur="7900">7 900 € <small>/ pers.</small></span>
                                 </div>
-                                <button class="btn-card-action btn-takeoff" data-flight-target="Santorin & Milos">
-                                    <span>Décoller</span>
+                                <button class="btn-card-action btn-takeoff magnetic-target" data-flight-target="Santorin & Milos">
+                                    <span data-i18n="cta_takeoff">Décoller</span>
                                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                 </button>
                             </div>
@@ -433,14 +643,17 @@
                     <!-- Destination 5 : Kyoto & Mer Intérieure de Seto -->
                     <div class="destination-card" data-category="orient" data-destination="Kyoto & Mer de Seto">
                         <div class="card-media">
-                            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=80" alt="Japon temple et nature apaisante">
+                            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&fm=webp&q=80" alt="Japon temple et nature apaisante" loading="lazy">
                             <div class="card-tag">Japon Sérénité</div>
                             <div class="flight-badge">
                                 <i class="fa-solid fa-plane"></i>
                                 <span>13h • Première Classe Suite</span>
                             </div>
 
-                            <!-- Déclencheur 2 : Élévation et inclinaison au survol -->
+                            <button class="btn-card-lookbook magnetic-target" data-lookbook="kyoto" title="Ouvrir la Galerie Privée">
+                                <i class="fa-solid fa-expand"></i> <span>Lookbook</span>
+                            </button>
+
                             <div class="card-takeoff-track" aria-hidden="true">
                                 <svg class="card-jet-icon" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
@@ -459,10 +672,10 @@
                             <div class="card-footer">
                                 <div class="card-price">
                                     <span class="price-from">À partir de</span>
-                                    <span class="price-val">16 200 € <small>/ pers.</small></span>
+                                    <span class="price-val" data-base-eur="16200">16 200 € <small>/ pers.</small></span>
                                 </div>
-                                <button class="btn-card-action btn-takeoff" data-flight-target="Kyoto & Mer de Seto">
-                                    <span>Décoller</span>
+                                <button class="btn-card-action btn-takeoff magnetic-target" data-flight-target="Kyoto & Mer de Seto">
+                                    <span data-i18n="cta_takeoff">Décoller</span>
                                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                 </button>
                             </div>
@@ -472,14 +685,17 @@
                     <!-- Destination 6 : Fjords de Norvège -->
                     <div class="destination-card" data-category="nordic" data-destination="Fjords & Ciels Boréaux">
                         <div class="card-media">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Fjords et eau d'un bleu profond">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&fm=webp&q=80" alt="Fjords et eau d'un bleu profond" loading="lazy">
                             <div class="card-tag">Sanctuaire Polaire</div>
                             <div class="flight-badge">
                                 <i class="fa-solid fa-plane"></i>
                                 <span>3h40 • Jet Privé Dédié</span>
                             </div>
 
-                            <!-- Déclencheur 2 : Élévation et inclinaison au survol -->
+                            <button class="btn-card-lookbook magnetic-target" data-lookbook="norvege" title="Ouvrir la Galerie Privée">
+                                <i class="fa-solid fa-expand"></i> <span>Lookbook</span>
+                            </button>
+
                             <div class="card-takeoff-track" aria-hidden="true">
                                 <svg class="card-jet-icon" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
@@ -498,10 +714,10 @@
                             <div class="card-footer">
                                 <div class="card-price">
                                     <span class="price-from">À partir de</span>
-                                    <span class="price-val">11 500 € <small>/ pers.</small></span>
+                                    <span class="price-val" data-base-eur="11500">11 500 € <small>/ pers.</small></span>
                                 </div>
-                                <button class="btn-card-action btn-takeoff" data-flight-target="Fjords & Ciels Boréaux">
-                                    <span>Décoller</span>
+                                <button class="btn-card-action btn-takeoff magnetic-target" data-flight-target="Fjords & Ciels Boréaux">
+                                    <span data-i18n="cta_takeoff">Décoller</span>
                                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                 </button>
                             </div>
@@ -573,62 +789,81 @@
             </div>
         </section>
 
-        <!-- CONCIERGERIE & SAVOIR-FAIRE -->
-        <section class="conciergerie-section" id="conciergerie">
-            <div class="container conciergerie-container">
-                <div class="conciergerie-visual">
-                    <div class="conciergerie-card-stack">
-                        <div class="item-base">
-                            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Détente face au lagon">
-                        </div>
-                        <div class="stack-floating-card">
-                            <div class="card-icon-round"><i class="fa-solid fa-shield-halved"></i></div>
-                            <div class="card-meta">
-                                <strong>Concierge Dédié 24/7</strong>
-                                <span>Un interlocuteur unique joignable à chaque instant de votre envolée.</span>
-                            </div>
-                        </div>
-                    </div>
+        <!-- SECTION 3: FAQ PROTOCOLE AVIATION D'AFFAIRES & CODES UHNWI -->
+        <section class="faq-section" id="faqSection">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-badge" data-i18n="faq_badge">Protocole & Exigences UHNWI</span>
+                    <h2 class="section-title" data-i18n="faq_title">Foire aux Questions — Aviation Privée</h2>
+                    <p class="section-subtitle" data-i18n="faq_subtitle">
+                        Toutes les réponses à vos exigences de confidentialité, flexibilité horaire et confort à bord.
+                    </p>
                 </div>
 
-                <div class="conciergerie-info">
-                    <span class="section-badge">Service Haute Façon</span>
-                    <h2 class="section-title">Une Conciergerie Invisible mais Omniprésente</h2>
-                    <p class="section-subtitle">
-                        Pour nous, le vrai luxe réside dans l'art d'anticiper le moindre de vos désirs sans que vous n'ayez à le formuler.
-                    </p>
-
-                    <div class="points-list">
-                        <div class="point-item">
-                            <div class="point-icon"><i class="fa-solid fa-compass-drafting"></i></div>
-                            <div class="point-content">
-                                <h4>Itinéraires Entièrement Façonnés</h4>
-                                <p>Aucun modèle préconçu : chaque voyage est taillé comme une pièce d'orfèvrerie selon vos aspirations.</p>
-                            </div>
-                        </div>
-
-                        <div class="point-item">
-                            <div class="point-icon"><i class="fa-solid fa-hand-holding-hand"></i></div>
-                            <div class="point-content">
-                                <h4>Assistance VIP & Meet & Greet</h4>
-                                <p>Accueil au pied de l'appareil par nos officiers de liaison, formalités douanières accélérées et salons privés.</p>
-                            </div>
-                        </div>
-
-                        <div class="point-item">
-                            <div class="point-icon"><i class="fa-solid fa-sparkles"></i></div>
-                            <div class="point-content">
-                                <h4>Accès aux Cercles Fermés</h4>
-                                <p>Tables gastronomiques introuvables, visites privatisées de musées hors horaires et rencontres avec des maîtres d'art.</p>
-                            </div>
+                <div class="faq-accordion-wrap">
+                    <!-- Q1 -->
+                    <div class="faq-item active">
+                        <button class="faq-question">
+                            <span>Quelle est la durée réelle d'embarquement sur vos vols privés ?</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>
+                                Moins de 15 minutes. Vous arrivez directement au terminal d'aviation d'affaires privé (ex. Paris Le Bourget ou Genève Cointrin). Votre officier de protocole prend vos bagages, les formalités de sûreté sont exécutées en quelques secondes dans notre salon privatif, et vous montez immédiatement à bord.
+                            </p>
                         </div>
                     </div>
 
-                    <div class="conciergerie-cta">
-                        <button class="btn-primary btn-takeoff" id="conciergeCtaBtn" data-flight-target="Consultation Conciergerie Privée">
-                            <span class="btn-text">Décoller avec un Conseiller</span>
-                            <span class="btn-icon"><i class="fa-solid fa-paper-plane"></i></span>
+                    <!-- Q2 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Comment sont gérées les formalités douanières et l'immigration ?</span>
+                            <i class="fa-solid fa-chevron-down"></i>
                         </button>
+                        <div class="faq-answer">
+                            <p>
+                                Aucun passage par les files publiques. Les agents de douane et de police des frontières contrôlent vos documents d'identité directement dans les salons diplomatiques privés ou au pied de votre appareil, garantissant un anonymat et un gain de temps absolus.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Puis-je voyager avec mes animaux de compagnie en cabine ?</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>
+                                Oui, sans aucune restriction de cage. Vos animaux de compagnie voyagent librement à vos côtés en cabine sur tous nos Falcon et Bombardier, avec une literie sur-mesure et un service d'attentions vétérinaires préparé en amont.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Quelle est votre garantie de confidentialité sur les plans de vol ?</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>
+                                Nous appliquons des protocoles stricts de discrétion diplomatique. Les immatriculations d'aéronefs peuvent être masquées sur les registres de suivi publics (programme PIA/LADD), et l'ensemble de notre personnel et équipage est soumis à des accords de confidentialité (NDA) rigoureux.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Que se passe-t-il en cas de retard ou de changement d'horaire imprévu ?</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>
+                                C'est l'appareil qui s'adapte à votre agenda, et non l'inverse. Si une réunion se prolonge, votre créneau de départ est ajusté instantanément par nos répartiteurs de vol 24/7 sans pénalité. L'équipage demeure à votre entière disposition.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -639,9 +874,9 @@
             <div class="container">
                 <div class="atelier-box">
                     <div class="section-header text-center">
-                        <span class="section-badge">L'Atelier de Confection</span>
-                        <h2 class="section-title">Concevez Votre Prochaine Envolée</h2>
-                        <p class="section-subtitle">
+                        <span class="section-badge" data-i18n="atelier_badge">L'Atelier de Confection</span>
+                        <h2 class="section-title" data-i18n="atelier_title">Concevez Votre Prochaine Envolée</h2>
+                        <p class="section-subtitle" data-i18n="atelier_subtitle">
                             Configurez en quelques instants les grandes lignes de votre itinéraire de rêve. Notre direction de création vous répondra sous 24h ouvrées.
                         </p>
                     </div>
@@ -726,7 +961,7 @@
                         </div>
 
                         <div class="form-submit-wrap">
-                            <button type="submit" class="btn-primary btn-large btn-takeoff" id="submitTripBtn" data-flight-target="Projet Haute Façon">
+                            <button type="submit" class="btn-primary btn-large btn-takeoff magnetic-target" id="submitTripBtn" data-flight-target="Projet Haute Façon">
                                 <span class="btn-text">Décoller vers Mon Projet</span>
                                 <span class="btn-icon plane-rotate"><i class="fa-solid fa-plane-departure"></i></span>
                             </button>
@@ -829,7 +1064,7 @@
         </div>
     </footer>
 
-    <!-- TAKEOFF CELEBRATION MODAL / FLIGHT BOARDING PASS -->
+    <!-- MODAL 1: TAKEOFF CELEBRATION MODAL / FLIGHT BOARDING PASS -->
     <div class="flight-modal" id="flightModal">
         <div class="flight-modal-backdrop" id="modalBackdrop"></div>
         <div class="flight-modal-content">
@@ -890,6 +1125,67 @@
         </div>
     </div>
 
+    <!-- MODAL 2: LOOKBOOK PLEIN ÉCRAN « GALERIE PRIVÉE » -->
+    <div class="lookbook-modal" id="lookbookModal">
+        <div class="lookbook-backdrop" id="lookbookBackdrop"></div>
+        <div class="lookbook-container">
+            <button class="lookbook-close-btn" id="lookbookCloseBtn" aria-label="Fermer le lookbook"><i class="fa-solid fa-xmark"></i></button>
+            <div class="lookbook-content-grid">
+                <div class="lookbook-media-wrap">
+                    <img id="lookbookMainImg" src="" alt="Lookbook d'exception">
+                    <div class="lookbook-nav-controls">
+                        <button id="lookbookPrevBtn" aria-label="Image précédente"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button id="lookbookNextBtn" aria-label="Image suivante"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="lookbook-info-pane">
+                    <span class="lookbook-tag" id="lookbookTag">Atoll Confidentiel</span>
+                    <h3 class="lookbook-title" id="lookbookTitle">Bora Bora & Taha'a</h3>
+                    <p class="lookbook-desc" id="lookbookDesc">Description détaillée du sanctuaire...</p>
+
+                    <div class="lookbook-specs-list" id="lookbookSpecs">
+                        <!-- Spécifications injectées dynamiquement -->
+                    </div>
+
+                    <div class="lookbook-action-row">
+                        <button class="btn-primary btn-takeoff magnetic-target" id="lookbookReserveBtn" data-flight-target="Réservation Lookbook">
+                            <span>Privatiser ce Sanctuaire</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: VIP LEAD MAGNET — « LE CARNET D'ENVOL 2026 » -->
+    <div class="carnet-modal" id="carnetModal">
+        <div class="carnet-backdrop" id="carnetBackdrop"></div>
+        <div class="carnet-modal-box">
+            <button class="carnet-close-btn" id="carnetCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+            <div class="carnet-modal-inner">
+                <div class="carnet-badge-top">Édition Exclusive 2026</div>
+                <h3>Recevez le Carnet d'Envol Privé</h3>
+                <p>
+                    68 pages confidentielles dédiées aux îles inviolées, pistes privatisées et nouvelles résidences d'exception dans le monde.
+                </p>
+                <form class="carnet-form" id="carnetForm">
+                    <div class="carnet-input-group">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" id="carnetEmail" placeholder="Votre adresse électronique officielle" required>
+                    </div>
+                    <button type="submit" class="btn-primary full-width-btn btn-takeoff" data-flight-target="Téléchargement Carnet 2026">
+                        <span>Télécharger l'Édition Numérique (PDF)</span>
+                        <i class="fa-solid fa-download"></i>
+                    </button>
+                </form>
+                <div class="carnet-note">
+                    <i class="fa-solid fa-shield-halved"></i> <span>Transmission chiffrée • Aucun démarchage commercial intrusif</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- TOAST NOTIFICATION -->
     <div class="takeoff-toast" id="takeoffToast">
         <div class="toast-jet-icon">
@@ -901,7 +1197,16 @@
         </div>
     </div>
 
-    <!-- DÉCLENCHEUR 1 : AVION VECTORIEL QUI TRAVERSE L'ÉCRAN EN DIAGONALE -->
+    <!-- FLOATING WHATSAPP VIP CONCIERGE BUTTON -->
+    <div class="floating-concierge-wrap" id="whatsappFloatingBtn">
+        <a href="https://wa.me/33148002400" target="_blank" rel="noopener noreferrer" class="floating-concierge-btn magnetic-target" title="Contacter l'officier de quart WhatsApp">
+            <div class="concierge-online-pulse"></div>
+            <i class="fa-brands fa-whatsapp"></i>
+            <span class="concierge-btn-label">Concierge VIP 24/7</span>
+        </a>
+    </div>
+
+    <!-- AVION VECTORIEL QUI TRAVERSE L'ÉCRAN EN DIAGONALE -->
     <div class="screen-flyer" id="screenFlyer" aria-hidden="true">
         <svg viewBox="0 0 110 65" fill="none" xmlns="http://www.w3.org/2000/svg" class="flyer-svg">
             <defs>
@@ -915,11 +1220,9 @@
                     <feComposite in="SourceGraphic" in2="blur" operator="over"/>
                 </filter>
             </defs>
-            <!-- Jet Body & Wings -->
             <path d="M106 32.5 L50 8 L50 24 L6 24 L0 32.5 L6 41 L50 41 L50 57 Z" fill="url(#flyerGrad)" filter="url(#flyerGlow)"/>
             <path d="M50 24 L94 32.5 L50 41 Z" fill="#38BDF8"/>
             <circle cx="94" cy="32.5" r="3.5" fill="#FFFFFF"/>
-            <!-- Jet engines -->
             <ellipse cx="50" cy="18" rx="8" ry="2.5" fill="#0369A1"/>
             <ellipse cx="50" cy="47" rx="8" ry="2.5" fill="#0369A1"/>
         </svg>
