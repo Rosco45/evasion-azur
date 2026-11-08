@@ -1,0 +1,15 @@
+# Logs & caches
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE & Editeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node / Temporaires (au cas où)
+node_modules/
+.env
+.env.local

@@ -1,0 +1,1947 @@
+/* ==========================================================================
+   ÉVASION AZUR — HAUTE CONFECTION DE VOYAGES D'EXCEPTION
+   Minimaliste • Ultra-Luxueux • Fond Blanc Immaculé • Bleu Azur & Turquoise
+   ========================================================================== */
+
+:root {
+    /* Fond & Whitespace Immaculés */
+    --color-white: #FFFFFF;
+    --color-snow: #FAFCFE;
+    --color-ice: #F0F9FF;
+    --color-azure-tint: #E0F2FE;
+
+    /* Bleus Azur de Prestige */
+    --azure-50: #F0F9FF;
+    --azure-100: #E0F2FE;
+    --azure-200: #BAE6FD;
+    --azure-300: #7DD3FC;
+    --azure-400: #38BDF8;
+    --azure-500: #0EA5E9;
+    --azure-600: #0284C7;
+    --azure-700: #0369A1;
+    --azure-800: #075985;
+    --azure-900: #0C4A6E;
+    --azure-deep: #072540;
+
+    /* Turquoises & Lagons Cristallins */
+    --turquoise-100: #CCFBF1;
+    --turquoise-200: #99F6E4;
+    --turquoise-300: #5EEAD4;
+    --turquoise-400: #2DD4BF;
+    --turquoise-500: #14B8A6;
+    --turquoise-600: #0D9488;
+    --turquoise-700: #0F766E;
+
+    /* Typographie & Lisibilité Maximale */
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #94A3B8;
+
+    /* Dégradés Royaux */
+    --grad-azure-turquoise: linear-gradient(135deg, #0284C7 0%, #06B6D4 50%, #14B8A6 100%);
+    --grad-azure-soft: linear-gradient(180deg, #FFFFFF 0%, #F0F9FF 100%);
+
+    /* Ombres Célestes Discrètes */
+    --shadow-subtle: 0 4px 20px -2px rgba(2, 132, 199, 0.05);
+    --shadow-medium: 0 16px 36px -6px rgba(2, 132, 199, 0.1);
+    --shadow-hover: 0 24px 48px -10px rgba(2, 132, 199, 0.14), 0 0 20px rgba(6, 182, 212, 0.1);
+
+    /* Bordures Fines */
+    --border-light: 1px solid rgba(2, 132, 199, 0.1);
+    --border-hover: 1px solid rgba(6, 182, 212, 0.35);
+
+    /* Typographies */
+    --font-heading: 'Syne', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+
+    /* Rayons */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 9999px;
+
+    /* Courbes & Transitions de vol */
+    --ease-flight: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   RESET & FOND PUR
+   ========================================================================== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    background-color: var(--color-white);
+    color: var(--text-primary);
+}
+
+body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.75;
+    background-color: var(--color-white);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Canvas Arrière-Plan et Traînées */
+#airplaneFlightCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+#takeoffTrailCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99998;
+}
+
+/* Container Structure */
+.container {
+    width: 100%;
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(1.25rem, 4vw, 2.5rem);
+    padding-right: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+/* ==========================================================================
+   ANNOUNCEMENT TICKER (ÉLÉGANT & MINIMALISTE)
+   ========================================================================== */
+.announcement-bar {
+    background: #0C4A6E;
+    color: #FFFFFF;
+    font-size: 0.8rem;
+    padding: 0.5rem 0;
+    position: relative;
+    z-index: 50;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.announcement-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.badge-pill {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.15rem 0.65rem;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.announcement-link {
+    color: var(--turquoise-300);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: var(--ease-smooth);
+}
+
+.announcement-link:hover {
+    color: #FFFFFF;
+    transform: translateX(3px);
+}
+
+/* ==========================================================================
+   HEADER MINIMALISTE
+   ========================================================================== */
+.site-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(2, 132, 199, 0.08);
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.site-header.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 8px 24px -6px rgba(2, 132, 199, 0.08);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+}
+
+/* Brand Logo */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.logo-mark {
+    width: 38px;
+    height: 38px;
+    transition: transform 0.6s var(--ease-flight);
+}
+
+.brand-logo:hover .logo-mark {
+    transform: rotate(45deg) scale(1.06);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text .title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 0.15em;
+    color: var(--azure-900);
+    line-height: 1.1;
+}
+
+.logo-text .subtitle {
+    font-size: 0.625rem;
+    letter-spacing: 0.24em;
+    color: var(--turquoise-600);
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    position: relative;
+    padding: 0.4rem 0;
+    transition: color 0.2s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--grad-azure-turquoise);
+    transition: width var(--ease-smooth);
+    border-radius: 2px;
+}
+
+.nav-link:hover {
+    color: var(--azure-700);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.sound-toggle-btn {
+    background: var(--azure-50);
+    border: 1px solid var(--azure-200);
+    color: var(--azure-700);
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-full);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.sound-toggle-btn:hover {
+    background: var(--azure-100);
+    transform: scale(1.05);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: var(--azure-900);
+    border-radius: 2px;
+    transition: 0.25s ease;
+}
+
+/* ==========================================================================
+   BOUTONS DE PRESTIGE & MICRO-INTERACTION "DÉCOLLER"
+   ========================================================================== */
+.btn-primary {
+    background: var(--grad-azure-turquoise);
+    color: #FFFFFF;
+    border: none;
+    padding: 0.72rem 1.6rem;
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    box-shadow: 0 8px 24px -4px rgba(2, 132, 199, 0.3);
+    transition: all var(--ease-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px -4px rgba(2, 132, 199, 0.45), 0 0 15px rgba(20, 184, 166, 0.25);
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
+.btn-large {
+    padding: 0.95rem 2.2rem;
+    font-size: 1rem;
+}
+
+.btn-secondary {
+    background: #FFFFFF;
+    color: var(--azure-800);
+    border: 1px solid var(--azure-200);
+    padding: 0.92rem 1.9rem;
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: all var(--ease-smooth);
+}
+
+.btn-secondary:hover {
+    background: var(--azure-50);
+    border-color: var(--azure-400);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-subtle);
+}
+
+.plane-rotate {
+    transition: transform 0.4s var(--ease-flight);
+}
+
+.btn-takeoff:hover .plane-rotate {
+    transform: translate(3px, -3px) rotate(-12deg);
+}
+
+/* ==========================================================================
+   HERO SECTION (WHITESPACE & RESPIRATION LUXUEUSE)
+   ========================================================================== */
+.hero-section {
+    position: relative;
+    padding: clamp(3.5rem, 7vw, 6.5rem) 0 clamp(4rem, 8vw, 7.5rem);
+    background-color: var(--color-white);
+    overflow: hidden;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+}
+
+.hero-tagline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.35rem 1rem;
+    background: var(--azure-50);
+    border: 1px solid var(--azure-200);
+    border-radius: var(--radius-full);
+    margin-bottom: 1.75rem;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--turquoise-500);
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.7);
+    animation: pulseAura 2s infinite;
+}
+
+@keyframes pulseAura {
+    0% { box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.6); }
+    70% { box-shadow: 0 0 0 8px rgba(20, 184, 166, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(20, 184, 166, 0); }
+}
+
+.tagline-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--azure-700);
+}
+
+/* Contraste marqué de typographie pour les titres */
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5.2vw, 4.1rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: var(--azure-900);
+    margin-bottom: 1.5rem;
+}
+
+.gradient-text {
+    background: var(--grad-azure-turquoise);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* Texte secondaire ultra-lisible */
+.hero-description {
+    font-size: clamp(1rem, 1.2vw, 1.125rem);
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.01em;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 3.5rem;
+}
+
+/* Stats / Métriques minimalistes */
+.hero-stats {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.2rem, 3vw, 2.5rem);
+    padding-top: 1.75rem;
+    border-top: 1px solid rgba(2, 132, 199, 0.12);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.75rem;
+    color: var(--azure-800);
+    line-height: 1.1;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-top: 0.3rem;
+    letter-spacing: 0.02em;
+}
+
+.stat-separator {
+    width: 1px;
+    height: 36px;
+    background-color: rgba(2, 132, 199, 0.15);
+}
+
+/* Visual Frame */
+.visual-card-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.hero-image-frame {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 24px 50px -15px rgba(2, 132, 199, 0.18);
+    border: 4px solid #FFFFFF;
+    background: #E0F2FE;
+    aspect-ratio: 4/5;
+}
+
+.hero-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 1.2s var(--ease-smooth);
+}
+
+.visual-card-wrapper:hover .hero-main-img {
+    transform: scale(1.04);
+}
+
+/* Runway Strip */
+.runway-strip {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    z-index: 3;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.runway-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.runway-code {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--azure-800);
+}
+
+.runway-dots {
+    flex: 1;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, #0284C7 0, #0284C7 6px, transparent 6px, transparent 14px);
+    opacity: 0.5;
+}
+
+.runway-plane {
+    width: 32px;
+    height: 32px;
+    color: var(--azure-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s var(--ease-flight);
+}
+
+.runway-plane:hover {
+    transform: translate(6px, -4px) rotate(-15deg);
+    color: var(--turquoise-600);
+}
+
+/* Badges Flottants */
+.glass-badge {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(2, 132, 199, 0.12);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1.15rem;
+    box-shadow: var(--shadow-medium);
+    z-index: 4;
+    transition: transform 0.4s var(--ease-smooth);
+}
+
+.glass-badge:hover {
+    transform: translateY(-4px);
+}
+
+.badge-top-right {
+    top: -20px;
+    right: -20px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.badge-icon-wrap {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background: var(--azure-50);
+    color: var(--azure-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.badge-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.badge-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--azure-900);
+}
+
+.badge-sub {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+.badge-bottom-left {
+    bottom: -16px;
+    left: -20px;
+    max-width: 260px;
+}
+
+.badge-stars {
+    color: #F59E0B;
+    font-size: 0.72rem;
+    margin-bottom: 0.2rem;
+}
+
+.badge-bottom-left .badge-sub {
+    font-size: 0.8rem;
+    color: var(--azure-900);
+    font-style: italic;
+    line-height: 1.35;
+}
+
+/* ==========================================================================
+   BARRE DE RECHERCHE & PLANIFICATEUR DE VOL
+   ========================================================================== */
+.hero-search-wrapper {
+    position: relative;
+    z-index: 10;
+    margin-top: -24px;
+}
+
+.flight-planner-bar {
+    background: #FFFFFF;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 16px 45px -10px rgba(2, 132, 199, 0.14);
+    border: 1px solid rgba(2, 132, 199, 0.12);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.planner-field {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.planner-field .field-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background: var(--azure-50);
+    color: var(--azure-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.planner-field .field-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.planner-field label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--turquoise-600);
+    margin-bottom: 0.15rem;
+}
+
+.planner-field select {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--azure-900);
+    cursor: pointer;
+    width: 100%;
+}
+
+.planner-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(2, 132, 199, 0.12);
+}
+
+.planner-btn {
+    background: var(--grad-azure-turquoise);
+    color: #FFFFFF;
+    border: none;
+    border-radius: var(--radius-full);
+    padding: 0.9rem 1.8rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    box-shadow: 0 8px 24px -4px rgba(2, 132, 199, 0.38);
+    transition: all var(--ease-smooth);
+    white-space: nowrap;
+}
+
+.planner-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -4px rgba(2, 132, 199, 0.48);
+}
+
+.planner-btn .plane-icon {
+    transition: transform 0.4s var(--ease-flight);
+}
+
+.planner-btn:hover .plane-icon {
+    transform: translate(3px, -3px) rotate(-15deg);
+}
+
+/* ==========================================================================
+   DESTINATIONS SECTION & DÉCLENCHEUR 2 (HOVER CARTE)
+   ========================================================================== */
+.destinations-section {
+    padding: clamp(4.5rem, 8vw, 7.5rem) 0;
+    background-color: var(--color-white);
+}
+
+.section-header {
+    max-width: 680px;
+    margin: 0 auto clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.section-header.text-center {
+    text-align: center;
+}
+
+.section-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--azure-700);
+    background: var(--azure-50);
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--azure-200);
+    margin-bottom: 1rem;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--azure-900);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+}
+
+/* Filtres de Destination */
+.destination-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.65rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: var(--azure-50);
+    border: 1px solid var(--azure-200);
+    color: var(--text-secondary);
+    padding: 0.55rem 1.35rem;
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.tab-btn:hover {
+    color: var(--azure-700);
+    background: var(--azure-100);
+    border-color: var(--azure-300);
+}
+
+.tab-btn.active {
+    background: var(--azure-600);
+    color: #FFFFFF;
+    border-color: var(--azure-600);
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.28);
+}
+
+/* Grille de Destinations Responsive */
+.destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+/* DÉCLENCHEUR 2 : CARTE ET AVION MINIATURE AU SURVOL */
+.destination-card {
+    background: #FFFFFF;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(2, 132, 199, 0.12);
+    box-shadow: var(--shadow-subtle);
+    transition: transform 0.6s var(--ease-flight), box-shadow 0.6s ease, border-color 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Élévation subtile de la carte */
+.destination-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(6, 182, 212, 0.35);
+}
+
+.card-media {
+    position: relative;
+    aspect-ratio: 16/11;
+    overflow: hidden;
+    background: #E0F2FE;
+}
+
+.card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s var(--ease-smooth);
+}
+
+.destination-card:hover .card-media img {
+    transform: scale(1.05);
+}
+
+.card-tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(8px);
+    color: var(--azure-900);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(2, 132, 199, 0.12);
+}
+
+.flight-badge {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    background: rgba(12, 74, 110, 0.88);
+    backdrop-filter: blur(8px);
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    z-index: 2;
+    transition: background 0.3s ease;
+}
+
+.destination-card:hover .flight-badge {
+    background: rgba(2, 132, 199, 0.94);
+}
+
+/* DÉCLENCHEUR 2 : ÉLÉVATION ET INCLINAISON DE L'AVION MINIATURE */
+.card-takeoff-track {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 130px;
+    height: 130px;
+    pointer-events: none;
+    z-index: 3;
+    overflow: hidden;
+}
+
+.card-jet-icon {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 26px;
+    height: 26px;
+    color: #FFFFFF;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+    transform: translate(0, 0) rotate(-45deg);
+    transition: transform 0.7s var(--ease-flight), opacity 0.5s ease, color 0.5s ease;
+    opacity: 0.85;
+}
+
+/* Élévation et inclinaison fluide en cubic-bezier */
+.destination-card:hover .card-jet-icon {
+    transform: translate(-34px, -60px) rotate(-65deg) scale(1.25);
+    color: var(--turquoise-300);
+    filter: drop-shadow(0 0 14px rgba(45, 212, 191, 0.9));
+    opacity: 1;
+}
+
+.hover-flight-trail {
+    position: absolute;
+    bottom: 22px;
+    right: 22px;
+    width: 0px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(45, 212, 191, 0.9), transparent);
+    transform-origin: right center;
+    transform: rotate(-55deg);
+    transition: width 0.7s var(--ease-flight);
+}
+
+.destination-card:hover .hover-flight-trail {
+    width: 80px;
+}
+
+/* Card Body */
+.card-body {
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card-header-meta {
+    margin-bottom: 0.65rem;
+}
+
+.card-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--azure-900);
+    line-height: 1.25;
+}
+
+.card-coords {
+    font-size: 0.7rem;
+    color: var(--turquoise-600);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-top: 0.2rem;
+}
+
+.card-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 1.4rem;
+    flex: 1;
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(2, 132, 199, 0.1);
+}
+
+.card-price {
+    display: flex;
+    flex-direction: column;
+}
+
+.price-from {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.price-val {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--azure-800);
+}
+
+.price-val small {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.btn-card-action {
+    background: var(--azure-50);
+    color: var(--azure-700);
+    border: 1px solid var(--azure-200);
+    padding: 0.55rem 1.1rem;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 0.82rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    transition: all 0.25s var(--ease-smooth);
+}
+
+.btn-card-action:hover {
+    background: var(--grad-azure-turquoise);
+    color: #FFFFFF;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+}
+
+/* ==========================================================================
+   EXPERIENCES SECTION
+   ========================================================================== */
+.experiences-section {
+    padding: clamp(4.5rem, 7vw, 7rem) 0;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F0F9FF 50%, #FFFFFF 100%);
+    position: relative;
+}
+
+.experiences-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.experience-card {
+    background: #FFFFFF;
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(2, 132, 199, 0.12);
+    box-shadow: var(--shadow-subtle);
+    transition: transform var(--ease-smooth), box-shadow var(--ease-smooth);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.experience-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--azure-300);
+}
+
+.experience-card.featured {
+    border: 1.5px solid var(--azure-400);
+    box-shadow: 0 16px 40px -10px rgba(6, 182, 212, 0.16);
+}
+
+.exp-badge {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--grad-azure-turquoise);
+    color: #FFFFFF;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.85rem;
+    border-radius: var(--radius-full);
+}
+
+.exp-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: var(--radius-md);
+    background: var(--azure-50);
+    color: var(--azure-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.4s var(--ease-flight);
+}
+
+.experience-card:hover .exp-icon {
+    transform: scale(1.08) rotate(-6deg);
+    background: var(--azure-100);
+}
+
+.exp-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--azure-900);
+    margin-bottom: 0.85rem;
+    line-height: 1.3;
+}
+
+.exp-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.exp-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: auto;
+}
+
+.exp-features li {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.exp-features li i {
+    color: var(--turquoise-500);
+    font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   CONCIERGERIE SECTION
+   ========================================================================== */
+.conciergerie-section {
+    padding: clamp(4.5rem, 7vw, 7rem) 0;
+    background-color: var(--color-white);
+}
+
+.conciergerie-container {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+}
+
+.conciergerie-card-stack {
+    position: relative;
+    max-width: 460px;
+}
+
+.item-base {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 20px 45px -10px rgba(2, 132, 199, 0.2);
+    aspect-ratio: 4/5;
+    border: 3px solid #FFFFFF;
+}
+
+.item-base img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.stack-floating-card {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(2, 132, 199, 0.15);
+    border-radius: var(--radius-md);
+    padding: 1.15rem 1.35rem;
+    box-shadow: var(--shadow-medium);
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    max-width: 320px;
+}
+
+.card-icon-round {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--grad-azure-turquoise);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+}
+
+.card-meta strong {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--azure-900);
+}
+
+.card-meta span {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.35;
+    display: block;
+}
+
+.points-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2.2rem 0;
+}
+
+.point-item {
+    display: flex;
+    gap: 1.1rem;
+    align-items: flex-start;
+}
+
+.point-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-md);
+    background: var(--azure-50);
+    border: 1px solid var(--azure-200);
+    color: var(--azure-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+}
+
+.point-content h4 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--azure-900);
+    margin-bottom: 0.2rem;
+}
+
+.point-content p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   ATELIER DE CONFECTION
+   ========================================================================== */
+.atelier-section {
+    padding: clamp(4.5rem, 7vw, 7rem) 0;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F0F9FF 100%);
+    position: relative;
+}
+
+.atelier-box {
+    background: #FFFFFF;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 24px 50px -15px rgba(2, 132, 199, 0.12);
+    border: 1px solid rgba(2, 132, 199, 0.12);
+    padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3.5rem);
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+.atelier-form {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--azure-900);
+    margin-bottom: 0.4rem;
+}
+
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 14px;
+    color: var(--azure-500);
+    font-size: 0.95rem;
+    pointer-events: none;
+}
+
+.input-with-icon input,
+.input-with-icon select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.75rem;
+    border: 1px solid rgba(2, 132, 199, 0.2);
+    border-radius: var(--radius-md);
+    background: #FFFFFF;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.form-group textarea {
+    padding-left: 1.1rem;
+    resize: vertical;
+}
+
+.input-with-icon input:focus,
+.input-with-icon select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--azure-500);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+}
+
+.form-submit-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+    margin-top: 0.85rem;
+}
+
+.form-guarantee {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+}
+
+.form-guarantee i {
+    color: var(--turquoise-500);
+}
+
+/* ==========================================================================
+   FOOTER INFORMATIF
+   ========================================================================== */
+.site-footer {
+    background: #FFFFFF;
+    border-top: 1px solid rgba(2, 132, 199, 0.1);
+    padding: clamp(3.5rem, 6vw, 5rem) 0 2rem;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 3rem;
+    margin-bottom: 3.5rem;
+}
+
+.footer-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 1.1rem 0;
+}
+
+.footer-partners {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--turquoise-600);
+}
+
+.footer-links-col h4 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--azure-900);
+    margin-bottom: 1.15rem;
+}
+
+.footer-links-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.footer-links-col a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+}
+
+.footer-links-col a:hover {
+    color: var(--azure-600);
+}
+
+.footer-address p {
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.footer-address i {
+    color: var(--azure-500);
+    font-size: 0.85rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 0.65rem;
+    margin-top: 1.1rem;
+}
+
+.social-links a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--azure-50);
+    color: var(--azure-600);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.social-links a:hover {
+    background: var(--azure-600);
+    color: #FFFFFF;
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(2, 132, 199, 0.08);
+    padding-top: 1.75rem;
+}
+
+.footer-bottom-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.legal-links {
+    display: flex;
+    gap: 1.25rem;
+}
+
+.legal-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+.legal-links a:hover {
+    color: var(--azure-700);
+}
+
+/* ==========================================================================
+   DÉCLENCHEUR 1 : L'AVION VECTORIEL QUI TRAVERSE L'ÉCRAN EN DIAGONALE
+   ========================================================================== */
+.screen-flyer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 95px;
+    height: 56px;
+    pointer-events: none;
+    z-index: 99999;
+    opacity: 0;
+    transform-origin: center center;
+    filter: drop-shadow(0 10px 24px rgba(2, 132, 199, 0.5));
+}
+
+.flyer-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Animation fluide en diagonale avec cubic-bezier */
+.screen-flyer.active-takeoff {
+    animation: flightDiagonalTrajectory 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes flightDiagonalTrajectory {
+    0% {
+        opacity: 0;
+        transform: translate3d(var(--start-x, 10vw), var(--start-y, 85vh), 0) rotate(var(--start-angle, -25deg)) scale(0.6);
+    }
+    15% {
+        opacity: 1;
+        transform: translate3d(calc(var(--start-x, 10vw) + 120px), calc(var(--start-y, 85vh) - 80px), 0) rotate(-32deg) scale(1.1);
+    }
+    50% {
+        opacity: 1;
+        transform: translate3d(calc(var(--start-x, 10vw) + 480px), calc(var(--start-y, 85vh) - 340px), 0) rotate(-42deg) scale(1.25);
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(calc(var(--start-x, 10vw) + 1150px), calc(var(--start-y, 85vh) - 820px), 0) rotate(-48deg) scale(0.5);
+    }
+}
+
+.jet-sparkle-trail {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 160px;
+    height: 8px;
+    background: linear-gradient(270deg, rgba(6, 182, 212, 0.95) 0%, rgba(2, 132, 199, 0.6) 45%, transparent 100%);
+    border-radius: 999px;
+    transform: translateY(-50%) rotate(0deg);
+    filter: blur(2px);
+}
+
+/* ==========================================================================
+   MODAL BOARDING PASS
+   ========================================================================== */
+.flight-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    padding: 1.25rem;
+}
+
+.flight-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.flight-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(11, 19, 43, 0.55);
+    backdrop-filter: blur(8px);
+}
+
+.flight-modal-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 600px;
+    transform: scale(0.94) translateY(15px);
+    transition: transform 0.35s var(--ease-smooth);
+}
+
+.flight-modal.active .flight-modal-content {
+    transform: scale(1) translateY(0);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    color: var(--azure-900);
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease;
+}
+
+.modal-close-btn:hover {
+    transform: rotate(90deg) scale(1.08);
+}
+
+.boarding-pass {
+    background: #FFFFFF;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 25px 60px rgba(2, 132, 199, 0.25);
+    overflow: hidden;
+    border: 1px solid rgba(2, 132, 199, 0.15);
+}
+
+.pass-header {
+    background: var(--grad-azure-turquoise);
+    color: #FFFFFF;
+    padding: 1.15rem 1.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pass-brand {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.pass-class {
+    background: rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 0.18rem 0.7rem;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.pass-body {
+    padding: 2rem;
+}
+
+.flight-animation-stage {
+    background: var(--azure-50);
+    border: 1px dashed var(--azure-300);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    text-align: center;
+    margin-bottom: 1.4rem;
+}
+
+.flight-takeoff-illustration {
+    position: relative;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flight-modal-jet {
+    width: 44px;
+    height: 44px;
+    animation: modalJetClimb 2.2s ease-in-out infinite;
+}
+
+@keyframes modalJetClimb {
+    0% { transform: translate(-25px, 12px) rotate(-15deg); }
+    50% { transform: translate(8px, -12px) rotate(-35deg); }
+    100% { transform: translate(-25px, 12px) rotate(-15deg); }
+}
+
+.boarding-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--azure-800);
+}
+
+.status-indicator {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--turquoise-500);
+    box-shadow: 0 0 6px var(--turquoise-400);
+}
+
+.modal-flight-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--azure-900);
+    margin-bottom: 0.45rem;
+}
+
+.modal-flight-text {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.4rem;
+}
+
+.pass-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.85rem;
+    background: #FAFCFE;
+    border: 1px solid rgba(2, 132, 199, 0.1);
+    border-radius: var(--radius-md);
+    padding: 0.85rem;
+    margin-bottom: 1.5rem;
+}
+
+.meta-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.meta-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+}
+
+.meta-val {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--azure-900);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Toast */
+.takeoff-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #FFFFFF;
+    border: 1px solid var(--azure-300);
+    box-shadow: 0 12px 32px -4px rgba(2, 132, 199, 0.28);
+    border-radius: var(--radius-md);
+    padding: 0.85rem 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    z-index: 99999;
+    transform: translateY(90px);
+    opacity: 0;
+    transition: all 0.35s var(--ease-smooth);
+}
+
+.takeoff-toast.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast-jet-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--azure-50);
+    color: var(--azure-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.toast-content strong {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--azure-900);
+}
+
+.toast-content span {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (MOBILE-FIRST POLISH)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .visual-card-wrapper {
+        max-width: 520px;
+        margin: 0 auto;
+    }
+
+    .destinations-grid,
+    .experiences-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .conciergerie-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .site-header .main-nav {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .flight-planner-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        padding: 1.25rem;
+    }
+
+    .planner-divider {
+        width: 100%;
+        height: 1px;
+    }
+
+    .destinations-grid,
+    .experiences-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-bottom-inner {
+        flex-direction: column;
+        gap: 0.85rem;
+        text-align: center;
+    }
+
+    .badge-top-right,
+    .badge-bottom-left {
+        position: static;
+        margin-bottom: 0.85rem;
+    }
+
+    .runway-strip {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        padding: 0 12px;
+    }
+}
